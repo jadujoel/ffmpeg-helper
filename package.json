@@ -1,0 +1,53 @@
+{
+  "name": "ffmpeg-helper",
+  "version": "0.0.10",
+  "description": "A Node.js module that provides an interface for executing platform-dependent binaries on multiple architectures (x64 and arm64) across macOS, Linux, and Windows. The module determines the underlying OS and architecture and provides the appropriate binary for execution.",
+  "main": "index.js",
+  "bin": "bin.mjs",
+  "types": "index.d.ts",
+  "files": [
+    "bin.mjs",
+    "ffmpeg-darwin-arm64.app",
+    "ffmpeg-darwin-x64.app",
+    "darwin-arm64.README",
+    "darwin-x64.README",
+    "index.d.ts",
+    "index.d.ts.map",
+    "index.js",
+    "index.js.map",
+    "index.ts",
+    "linux-arm",
+    "linux-arm.LICENSE",
+    "linux-arm.README",
+    "linux-arm64",
+    "linux-arm64.LICENSE",
+    "linux-arm64.README",
+    "linux-ia32",
+    "linux-ia32.LICENSE",
+    "linux-ia32.README",
+    "linux-x64",
+    "linux-x64.LICENSE",
+    "linux-x64.README",
+    "package.json",
+    "README.md",
+    "test.sh",
+    "test.wav",
+    "tsconfig.json",
+    "win32-ia32.exe",
+    "win32-ia32.exe.LICENSE",
+    "win32-x64.exe",
+    "win32-x64.exe.LICENSE"
+  ],
+  "scripts": {
+    "postinstall": "chmod -R +x ffmpeg-darwin-arm64.app ffmpeg-darwin-x64.app && chmod +x bin.mjs linux-arm linux-arm64 linux-ia32 linux-x64 win32-ia32.exe win32-x64.exe test.sh && ./test.sh",
+    "test": "./test.sh",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Joel Lof <joel.lof@icloud.com> (https://joellof.com/)",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "20.2.5",
+    "typescript": "5.0.4"
+  }
+}

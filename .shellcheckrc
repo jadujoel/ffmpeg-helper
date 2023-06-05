@@ -1,0 +1,16 @@
+# Ignore certain warnings
+ignore=SC1090,SC1091,SC2155
+
+# Set the shell to use
+shell=bash
+
+# Set the maximum line length
+max-line-length=120
+
+# Enable color output
+color=auto
+
+# Enable all optional checks
+enable=all
+
+external-sources=true
