@@ -31,7 +31,8 @@ else
     exit 1
 fi
 
-here=$(dirname "$0")
+here_relative=$(dirname "${0}")
+here=$(realpath "${here_relative}")
 file=$(realpath "${here}/${name}.app/Contents/MacOS/${name}")
 checkmark="\xE2\x9C\x93"
 cross="\xE2\x9D\x8C"
@@ -87,7 +88,10 @@ echo -e "Execution worked ${checkmark}"
 
 echo "Encoding..."
 infile=$(realpath "${here}/test.wav")
-outfile=$(realpath "${here}/test.mp3")
+# Cannot use realpath because it will fail if the file does not exist."
+outfile="${here}/test.mp3"
+
+
 rm -f "${outfile}"
 cmd="${file} -hide_banner -i \"${infile}\" -y \"${outfile}\""
 encoding=$(eval "${cmd}" 2>&1)
