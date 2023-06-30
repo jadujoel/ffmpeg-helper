@@ -39,8 +39,8 @@
     "win32-x64.exe.LICENSE"
   ],
   "scripts": {
-    "postinstall": "chmod -R +x ffmpeg-darwin-arm64.app ffmpeg-darwin-x64.app && chmod +x bin.mjs linux-arm linux-arm64 linux-ia32 linux-x64 win32-ia32.exe win32-x64.exe test.sh && ./test.sh",
-    "test": "./test.sh",
+    "postinstall": "chmod -R +x ffmpeg-darwin-arm64.app ffmpeg-darwin-x64.app && chmod +x bin.mjs linux-arm linux-arm64 linux-ia32 linux-x64 win32-ia32.exe win32-x64.exe test.sh",
+    "test": "bash test.sh",
     "build": "tsc"
   },
   "keywords": [],
