@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-helper",
-  "version": "0.0.10",
+  "version": "0.0.13",
   "description": "A Node.js module that provides an interface for executing platform-dependent binaries on multiple architectures (x64 and arm64) across macOS, Linux, and Windows. The module determines the underlying OS and architecture and provides the appropriate binary for execution.",
   "main": "index.js",
   "bin": "bin.mjs",
@@ -31,6 +31,8 @@
     "package.json",
     "README.md",
     "test.sh",
+    "timeout.sh",
+    "test_timeout.sh",
     "test.wav",
     "tsconfig.json",
     "win32-ia32.exe",
@@ -39,9 +41,9 @@
     "win32-x64.exe.LICENSE"
   ],
   "scripts": {
-    "postinstall": "chmod -R +x ffmpeg-darwin-arm64.app ffmpeg-darwin-x64.app && chmod +x bin.mjs linux-arm linux-arm64 linux-ia32 linux-x64 win32-ia32.exe win32-x64.exe test.sh && ./test.sh",
-    "test": "./test.sh",
-    "build": "tsc"
+    "postinstall": "chmod -R +x ffmpeg-darwin-arm64.app ffmpeg-darwin-x64.app && chmod +x bin.mjs linux-arm linux-arm64 linux-ia32 linux-x64 win32-ia32.exe win32-x64.exe test.sh timeout.sh test_timeout.sh ",
+    "test": "bash test.sh",
+    "build": "tsc && bash test_timeout.sh"
   },
   "keywords": [],
   "author": "Joel Lof <joel.lof@icloud.com> (https://joellof.com/)",

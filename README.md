@@ -6,6 +6,8 @@ The module provides the name and path of the binary and a function to run comman
 
 The binaries comes from https://github.com/eugeneware/ffmpeg-static/releases
 
+The source code is available at https://github.com/jadujoel/ffmpeg-helper
+
 ## Installation
 
 ```bash
