@@ -31,6 +31,8 @@
     "package.json",
     "README.md",
     "test.sh",
+    "timeout.sh",
+    "test_timeout.sh",
     "test.wav",
     "tsconfig.json",
     "win32-ia32.exe",
@@ -39,9 +41,9 @@
     "win32-x64.exe.LICENSE"
   ],
   "scripts": {
-    "postinstall": "chmod -R +x ffmpeg-darwin-arm64.app ffmpeg-darwin-x64.app && chmod +x bin.mjs linux-arm linux-arm64 linux-ia32 linux-x64 win32-ia32.exe win32-x64.exe test.sh",
+    "postinstall": "chmod -R +x ffmpeg-darwin-arm64.app ffmpeg-darwin-x64.app && chmod +x bin.mjs linux-arm linux-arm64 linux-ia32 linux-x64 win32-ia32.exe win32-x64.exe test.sh timeout.sh test_timeout.sh ",
     "test": "bash test.sh",
-    "build": "tsc"
+    "build": "tsc && bash test_timeout.sh"
   },
   "keywords": [],
   "author": "Joel Lof <joel.lof@icloud.com> (https://joellof.com/)",
