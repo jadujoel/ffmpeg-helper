@@ -9,7 +9,7 @@ export type Architecture = 'x64' | 'arm64';
 export const binaries = {
   darwin: {
     x64: 'ffmpeg-darwin-x64.app/Contents/MacOS/ffmpeg-darwin-x64',
-    arm64: 'ffmpeg-darwin-x64.app/Contents/MacOS/ffmpeg-darwin-arm64',
+    arm64: 'ffmpeg-darwin-arm64.app/Contents/MacOS/ffmpeg-darwin-arm64',
   },
   linux: {
     x64: 'linux-x64',
@@ -26,7 +26,6 @@ export const isSupportedPlatform = (operatingSystem: string): operatingSystem is
 
 export const isSupportedArchitecture = (architecture: string): architecture is Architecture =>
   Object.keys(binaries[platform()]).includes(architecture);
-
 
 export const platf = platform();
 export const architecture = arch();

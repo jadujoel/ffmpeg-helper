@@ -1,5 +1,5 @@
 #!/bin/bash
-# define the paths variable as an array of file paths
+
 export paths=(
   "darwin-x64"
   "darwin-arm64"

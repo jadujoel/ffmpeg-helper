@@ -7,6 +7,7 @@
 # Especially for MacOS Ventura where we have had some issues sporadically with the ffmpeg binary not being able to run.
 # Until it's been run once manually.
 
+set -u
 echo "Running Tests for ffmpeg-helper"
 
 os=$(uname)
@@ -31,10 +32,16 @@ else
     exit 1
 fi
 
-here=$(dirname "$0")
+realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "${PWD}/${1#./}"
+}
+
+here_relative=$(dirname "${0}")
+here=$(realpath "${here_relative}")
 file=$(realpath "${here}/${name}.app/Contents/MacOS/${name}")
 checkmark="\xE2\x9C\x93"
 cross="\xE2\x9D\x8C"
+timeout_script="${here}/timeout.sh"
 
 echo "File: ${file}"
 
@@ -42,6 +49,14 @@ echo "File: ${file}"
 if [[ ! -f "${file}" ]]; then
     echo "File does not exist."
     echo "Make sure you have installed the ffmpeg-helper package. (npm install ffmpeg-helper)"
+    echo "Exiting..."
+    exit 1
+fi
+
+# Check that timeout script exists
+if [[ ! -f "${timeout_script}" ]]; then
+    echo "Timeout script does not exist."
+    echo "Cannot run test without it."
     echo "Exiting..."
     exit 1
 fi
@@ -62,9 +77,11 @@ else
     exit 1
 fi
 
+
 ## Try to run the executable
 echo "Execution..."
-result=$(timeout "4s" "${file}" -hide_banner -version 2>&1)
+result=$("${timeout_script}" 8 "${file}" -hide_banner -version 2>&1)
+
 exit_code=$?
 
 # if the output includes "ffmpeg version" then it worked
@@ -87,7 +104,10 @@ echo -e "Execution worked ${checkmark}"
 
 echo "Encoding..."
 infile=$(realpath "${here}/test.wav")
-outfile=$(realpath "${here}/test.mp3")
+# Cannot use realpath because it will fail if the file does not exist."
+outfile="${here}/test.mp3"
+
+
 rm -f "${outfile}"
 cmd="${file} -hide_banner -i \"${infile}\" -y \"${outfile}\""
 encoding=$(eval "${cmd}" 2>&1)

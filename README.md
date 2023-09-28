@@ -6,6 +6,8 @@ The module provides the name and path of the binary and a function to run comman
 
 The binaries comes from https://github.com/eugeneware/ffmpeg-static/releases
 
+The source code is available at https://github.com/jadujoel/ffmpeg-helper
+
 ## Installation
 
 ```bash
@@ -14,7 +16,13 @@ npm install ffmpeg-helper
 
 ## Usage
 
-First, import the module in your script.
+Run the ffmpeg executable:
+
+```bash
+npx ffmpeg-helper -i test.wav test.mp4
+```
+
+Or, import the module in your script.
 
 ```javascript
 import { name, path, run } from 'ffmpeg-helper';
@@ -26,7 +34,7 @@ Then, you can use the exported properties and functions:
 console.log(`Running on platform: ${name}`);
 console.log(`Binary path: ${path}`);
 
-run('command to execute with binary')
+run('-i test.wav test.mp4')
   .then((output) => {
     console.log(`Command output: ${output}`);
   })
@@ -36,11 +44,6 @@ run('command to execute with binary')
 ```
 
 `run` is a function that executes a command with the platform-dependent binary and returns a Promise. The Promise resolves with the output of the command if it was successful, or rejects with an error if the command failed.
-
-Or if you just want to run the installed ffmpeg directly
-```sh
-npx ffmpeg-helper --help
-```
 
 ## Supported Platforms and Architectures
 
@@ -59,4 +62,5 @@ ffmpeg-helper currently supports the following platforms and architectures:
 If a platform or architecture is not supported, an error will be thrown.
 
 ## Types
+
 if you get "any" as types when importing, then add "@types/node" to your dependencies.

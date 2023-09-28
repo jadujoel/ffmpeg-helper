@@ -18,3 +18,5 @@ test.d.ts
 test.d.ts.map
 test.mp3
 test.wav
+.DS_Store
+
