@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-helper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Node.js module that provides an interface for executing platform-dependent binaries on multiple architectures (x64 and arm64) across macOS, Linux, and Windows. The module determines the underlying OS and architecture and provides the appropriate binary for execution.",
   "main": "index.js",
   "bin": "bin.mjs",
