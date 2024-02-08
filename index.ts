@@ -36,7 +36,14 @@ if (!isSupportedPlatform(platf)) {
 }
 
 export const name = binaries[platf][architecture];
-export const path = resolve(__dirname, name);
+
+// when running this with for example @jadujoel/runts
+// then the path incorrectly could show up as the current directory + name
+// which is why we use the if check
+export const path = resolve().includes('node_modules')
+  ? resolve(resolve(), name)
+  : resolve(resolve(), 'node_modules', 'ffmpeg-helper', name);
+
 export const run = (cmd: string) => {
   return promisify(exec)(`${path} ${cmd}`);
 }
